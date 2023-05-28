@@ -2943,21 +2943,13 @@ $parcel$ReactRefreshHelpers$98a3.prelude(module);
 try {
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _client = require("react-dom/client");
+var _mainView = require("./components/MainView/MainView");
 var _indexScss = require("./index.scss");
 const App = ()=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "my-flix",
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            children: "Good morning"
-        }, void 0, false, {
-            fileName: "src/index.jsx",
-            lineNumber: 8,
-            columnNumber: 13
-        }, undefined)
-    }, void 0, false, {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
         fileName: "src/index.jsx",
         lineNumber: 7,
-        columnNumber: 9
+        columnNumber: 12
     }, undefined);
 };
 _c = App;
@@ -2965,7 +2957,7 @@ const container = document.querySelector("#root");
 const root = (0, _client.createRoot)(container);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(App, {}, void 0, false, {
     fileName: "src/index.jsx",
-    lineNumber: 16,
+    lineNumber: 13,
     columnNumber: 13
 }, undefined));
 var _c;
@@ -2976,7 +2968,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react-dom/client":"lOjBx","./index.scss":"lJZlQ","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","./components/MainView/MainView":"8CR3S"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("ee51401569654d91");
 
@@ -27299,6 +27291,271 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"2f1dfff7d265aa49":"8QnHs"}]},["50ugN","dAPVv","d8Dch"], "d8Dch", "parcelRequire078d")
+},{"2f1dfff7d265aa49":"8QnHs"}],"8CR3S":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$067f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$067f.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MainView", ()=>MainView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _bookCard = require("./BookCard");
+var _bookView = require("./BookView");
+var _s = $RefreshSig$();
+const MainView = ()=>{
+    _s();
+    const [books, setBooks] = (0, _react.useState)([
+        {
+            id: 1,
+            title: "Eloquent JavaScript",
+            image: "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
+            author: "Marijn Haverbeke"
+        },
+        {
+            id: 2,
+            title: "Mastering JavaScript Functional Programming",
+            image: "https://images-na.ssl-images-amazon.com/images/I/51WAikRq37L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
+            author: "Federico Kereki"
+        },
+        {
+            id: 3,
+            title: "JavaScript: The Good Parts",
+            image: "https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg",
+            author: "Douglas Crockford"
+        },
+        {
+            id: 4,
+            title: "JavaScript: The Definitive Guide",
+            image: "https://images-na.ssl-images-amazon.com/images/I/51HbNW6RzhL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
+            author: "David Flanagan"
+        },
+        {
+            id: 5,
+            title: "The Road to React",
+            image: "https://images-na.ssl-images-amazon.com/images/I/41MBLi5a4jL._SX384_BO1,204,203,200_.jpg",
+            author: "Robin Wieruch"
+        }
+    ]);
+    const [selectedBook, setSelectedBook] = (0, _react.useState)(null);
+    if (books.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: "The list is empty!"
+    }, void 0, false, {
+        fileName: "src/components/MainView/MainView.jsx",
+        lineNumber: 47,
+        columnNumber: 16
+    }, undefined);
+    if (selectedBook) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookView.BookView), {
+        book: selectedBook,
+        onBack: ()=>{
+            setSelectedBook(null);
+        }
+    }, void 0, false, {
+        fileName: "src/components/MainView/MainView.jsx",
+        lineNumber: 51,
+        columnNumber: 16
+    }, undefined);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: books.map((book, i)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _bookCard.BookCard), {
+                book: book,
+                onBookClick: ()=>{
+                    setSelectedBook(books[i]);
+                }
+            }, book.id, false, {
+                fileName: "src/components/MainView/MainView.jsx",
+                lineNumber: 57,
+                columnNumber: 21
+            }, undefined))
+    }, void 0, false, {
+        fileName: "src/components/MainView/MainView.jsx",
+        lineNumber: 55,
+        columnNumber: 9
+    }, undefined);
+};
+_s(MainView, "chuSyZArYKhvjS4cDO7kt8PlMSM=");
+_c = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
+
+  $parcel$ReactRefreshHelpers$067f.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC","react":"21dqq","./BookCard":"cRQRD","./BookView":"gEHde"}],"fD7H8":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"cRQRD":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$8706 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$8706.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BookCard", ()=>BookCard);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const BookCard = ({ book , onBookClick  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "book-card",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                children: book.title
+            }, void 0, false, {
+                fileName: "src/components/MainView/BookCard.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: onBookClick,
+                children: "Select"
+            }, void 0, false, {
+                fileName: "src/components/MainView/BookCard.jsx",
+                lineNumber: 5,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/MainView/BookCard.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, undefined);
+};
+_c = BookCard;
+var _c;
+$RefreshReg$(_c, "BookCard");
+
+  $parcel$ReactRefreshHelpers$8706.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","react/jsx-dev-runtime":"iTorj","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}],"gEHde":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$f7c9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$f7c9.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "BookView", ()=>BookView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+const BookView = ({ book , onBack  })=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    src: book.image
+                }, void 0, false, {
+                    fileName: "src/components/MainView/BookView.jsx",
+                    lineNumber: 5,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/MainView/BookView.jsx",
+                lineNumber: 4,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Title: "
+                    }, void 0, false, {
+                        fileName: "src/components/MainView/BookView.jsx",
+                        lineNumber: 8,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: book.title
+                    }, void 0, false, {
+                        fileName: "src/components/MainView/BookView.jsx",
+                        lineNumber: 9,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/MainView/BookView.jsx",
+                lineNumber: 7,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: "Author: "
+                    }, void 0, false, {
+                        fileName: "src/components/MainView/BookView.jsx",
+                        lineNumber: 12,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                        children: book.author
+                    }, void 0, false, {
+                        fileName: "src/components/MainView/BookView.jsx",
+                        lineNumber: 13,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/MainView/BookView.jsx",
+                lineNumber: 11,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                onClick: onBack,
+                children: "Go back"
+            }, void 0, false, {
+                fileName: "src/components/MainView/BookView.jsx",
+                lineNumber: 15,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/MainView/BookView.jsx",
+        lineNumber: 3,
+        columnNumber: 9
+    }, undefined);
+};
+_c = BookView;
+var _c;
+$RefreshReg$(_c, "BookView");
+
+  $parcel$ReactRefreshHelpers$f7c9.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"fD7H8","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"fDiVC"}]},["50ugN","dAPVv","d8Dch"], "d8Dch", "parcelRequire078d")
 
 //# sourceMappingURL=index.b4b6dfad.js.map
