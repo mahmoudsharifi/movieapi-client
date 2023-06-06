@@ -1,64 +1,89 @@
-import { useState } from 'react'
-import { BookCard } from './BookCard';
-import { BookView } from './BookView';
+import { useState, useEffect } from 'react'
+import { MovieCard } from '../MovieCard/MovieCard'
+import { MovieView } from '../MovieView/MovieView'
 
 export const MainView = () => {
-    const [books, setBooks] = useState([
-        {
-            id: 1,
-            title: "Eloquent JavaScript",
-            image:
-                "https://images-na.ssl-images-amazon.com/images/I/51InjRPaF7L._SX377_BO1,204,203,200_.jpg",
-            author: "Marijn Haverbeke"
-        },
-        {
-            id: 2,
-            title: "Mastering JavaScript Functional Programming",
-            image:
-                "https://images-na.ssl-images-amazon.com/images/I/51WAikRq37L._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-            author: "Federico Kereki"
-        },
-        {
-            id: 3,
-            title: "JavaScript: The Good Parts",
-            image:
-                "https://images-na.ssl-images-amazon.com/images/I/5131OWtQRaL._SX381_BO1,204,203,200_.jpg",
-            author: "Douglas Crockford"
-        },
-        {
-            id: 4,
-            title: "JavaScript: The Definitive Guide",
-            image:
-                "https://images-na.ssl-images-amazon.com/images/I/51HbNW6RzhL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg",
-            author: "David Flanagan"
-        },
-        {
-            id: 5,
-            title: "The Road to React",
-            image:
-                "https://images-na.ssl-images-amazon.com/images/I/41MBLi5a4jL._SX384_BO1,204,203,200_.jpg",
-            author: "Robin Wieruch"
-        }
-    ])
-    const [selectedBook, setSelectedBook] = useState(null)
+  const [movies, setMovies] = useState([
+    {
+      id: 1,
+      Title: 'The Shawshank Redemption',
+      Description:
+        'Andy Dufresne (Tim Robbins) is sentenced to two consecutive life terms in prison for the murders of his wife and her lover and is sentenced to a tough prison. However, only Andy knows he didnt commit the crimes. ',
+      Genre: 'Drama',
+      Director: 'Frank Darabont',
+      ImageURL:
+        'https://www.themoviedb.org/t/p/original/tNf2OIGrOfHh4j3VvMvKceIDoix.jpg',
+      Year: '1994',
+    },
+    {
+      id: 2,
+      Title: 'Fight Club',
+      Description:
+        'A depressed man (Edward Norton) suffering from insomnia meets a strange soap salesman named Tyler Durden (Brad Pitt) and soon finds himself living in his squalid house after his perfect apartment is destroyed.',
+      Genre: 'Drama',
+      Director: 'David Fincher',
+      ImageURL:
+        'https://www.themoviedb.org/t/p/original/wlmGPHDbnOK4AwL37m6tegxO8A3.jpg',
+      Year: '1999',
+    },
+    {
+      id: 3,
+      Title: 'The Lord of the Rings: The Fellowship of the Ring',
+      Description: 'The first adventure in The Lord of the Rings trilogy!',
+      Genre: 'Adventure',
+      Director: 'Peter Jackson',
+      ImageURL:
+        'https://www.themoviedb.org/t/p/original/mm1NV8GdBvlzI1xI590p3CvJMOJ.jpg',
+      Year: '2001',
+    },
+  ])
 
+  // API Call
+  useEffect(() => {
+    fetch('http://localhost:8081/movies').then((response) =>
+      response.json().then((data) => {
+        console.log(data)
+        const movies = data.map((m) => ({
+          id: m.Title,
+          Title: m.Title,
+          Description: m.Description,
+          Genre: m.Genre.Name,
+          Director: m.Director.Name,
+          ImageURL: m.ImageURL,
+          Year: m.Year,
+        }))
 
-    if (books.length === 0) {
-        return <div>The list is empty!</div>;
-    }
+        setMovies(movies)
+      })
+    )
+  }, [])
 
-    if (selectedBook) {
-        return <BookView book={selectedBook} onBack={()=>{setSelectedBook(null)}}/>;
-    }
+  const [selectedMovie, setSelectedMovie] = useState(null)
 
+  if (selectedMovie) {
     return (
-        <div>
-            {books.map((book, i) => (
-                    <BookCard book={book} 
-                    key={book.id} 
-                    onBookClick={()=>{setSelectedBook(books[i])}}
-                    />
-            ))}
-        </div>
-    );
-};
+      <MovieView
+        movie={selectedMovie}
+        onBackClick={() => setSelectedMovie(null)}
+      />
+    )
+  }
+
+  if (movies.length === 0) {
+    return <div>The list is empty!</div>
+  }
+
+  return (
+    <div>
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie)
+          }}
+        />
+      ))}
+    </div>
+  )
+}
