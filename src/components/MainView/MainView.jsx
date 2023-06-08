@@ -1,32 +1,21 @@
 import { useState, useEffect } from 'react'
 import { MovieCard } from '../MovieCard/MovieCard'
 import { MovieView } from '../MovieView/MovieView'
+import LoginView from '../LoginView/LoginView'
+import SignupView from '../SignupView/SignupView'
 
 export const MainView = () => {
   // movies data array
   const [movies, setMovies] = useState([])
+  const [user, setUser] = useState(null)
+  const [token, setToken] = useState(null)
 
   // API Call
-  useEffect(() => {
-    fetch('http://localhost:8081/movies').then((response) =>
-      response.json().then((data) => {
-        console.log(data)
-        const movies = data.map((m) => ({
-          id: m.Title,
-          Title: m.Title,
-          Description: m.Description,
-          Genre: m.Genre.Name,
-          Director: m.Director.Name,
-          ImageURL: m.ImageURL,
-          Year: m.Year,
-        }))
-
-        setMovies(movies)
-      })
-    )
-  }, [])
+  useEffect(() => {}, [])
 
   const [selectedMovie, setSelectedMovie] = useState(null)
+
+  if (!user) return <LoginView onLoggedIn={(user) => setUser(user)} />
 
   if (selectedMovie) {
     return (
