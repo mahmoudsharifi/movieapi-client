@@ -11,7 +11,30 @@ export const MainView = () => {
   const [token, setToken] = useState(null)
 
   // API Call
-  useEffect(() => {}, [])
+   useEffect(() => {
+    console.log(token)
+    fetch('http://localhost:8080/movies', {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then((response) =>
+      response
+        .json()
+        .then((data) => {
+          console.log(data)
+          const movies = data.map((m) => ({
+            id: m.Title,
+            Title: m.Title,
+            Description: m.Description,
+            Genre: m.Genre.Name,
+            Director: m.Director.Name,
+            ImageURL: m.ImageURL,
+            Year: m.Year,
+          }))
+
+          setMovies(movies)
+        })
+        .catch((err) => console.log(err))
+    )
+  }, [])
 
   const [selectedMovie, setSelectedMovie] = useState(null)
 
